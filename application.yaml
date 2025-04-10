@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoUrl: https://github.com/rutviklhase/argo-cd-demo.git
+    targetRevision: HEAD
+    path: dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app-nana
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true 
+    automated: 
+      selfHeal: true
+      prune: true
