@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nana-deployment
+  labels:
+    app: nana
+spec:
+  selector:
+    matchLabels:
+      app: nana
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nana
+    spec:
+      containers:
+      - name: appnana
+        image: nanajanashia/argocd-app:1.0
+        ports:
+        - containerPort: 8080
+
+
